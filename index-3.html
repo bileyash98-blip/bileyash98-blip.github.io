@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YB Group of Milk Business — Raw Milk & Dairy, Home Delivered</title>
+<meta name="description" content="YB Group of Milk Business — pure raw milk, curd, paneer, ghee and more. Home delivery and shop locations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream: #FDF8EC;
+    --cream-line: #EDE2C6;
+    --pasture: #33472F;
+    --pasture-dark: #223020;
+    --ghee: #D9A441;
+    --ghee-light: #F0C876;
+    --earth: #3B2C1E;
+    --white: #FFFFFF;
+    --max: 1120px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Work Sans', sans-serif;
+    background:var(--cream);
+    color:var(--earth);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Fraunces', serif; font-weight:700; color:var(--pasture-dark); line-height:1.1;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  a{color:inherit;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 24px;}
+  img,svg{display:block; max-width:100%;}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(253,248,236,0.9);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--cream-line);
+  }
+  .header-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px;
+  }
+  .brand{display:flex; align-items:center; gap:10px;}
+  .brand-mark{
+    width:38px; height:38px; border-radius:50%;
+    background:var(--pasture);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--ghee-light); font-family:'Fraunces',serif; font-weight:700; font-size:16px;
+    flex-shrink:0;
+  }
+  .brand-name{font-family:'Fraunces', serif; font-weight:700; font-size:1.05rem; color:var(--pasture-dark); letter-spacing:0.2px;}
+  .brand-sub{font-size:0.68rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--ghee); font-weight:600;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:11px 20px; border-radius:100px;
+    font-weight:600; font-size:0.92rem;
+    text-decoration:none; border:none; cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn-whatsapp{background:var(--pasture); color:var(--cream);}
+  .btn-whatsapp:hover{box-shadow:0 6px 18px rgba(51,71,47,0.35);}
+  .btn-ghost{background:transparent; color:var(--pasture-dark); border:1.5px solid var(--pasture-dark);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:var(--pasture);
+    color:var(--cream);
+    position:relative;
+    overflow:hidden;
+    padding:72px 0 110px;
+  }
+  .hero-inner{
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:48px; align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; letter-spacing:1.5px;
+    text-transform:uppercase; color:var(--ghee-light); margin-bottom:20px;
+  }
+  .eyebrow::before{content:''; width:22px; height:1px; background:var(--ghee-light); display:inline-block;}
+  .hero h1{
+    font-size:clamp(2.3rem, 5vw, 3.6rem);
+    color:var(--cream);
+    max-width:14ch;
+  }
+  .hero h1 em{font-style:italic; color:var(--ghee-light);}
+  .hero p.lede{
+    margin-top:22px; font-size:1.08rem; color:#E7E3D3; max-width:44ch;
+  }
+  .hero-actions{display:flex; gap:14px; margin-top:34px; flex-wrap:wrap;}
+  .hero-actions .btn-ghost{color:var(--cream); border-color:rgba(253,248,236,0.5);}
+  .hero-actions .btn-whatsapp{background:var(--ghee); color:var(--pasture-dark);}
+  .hero-actions .btn-whatsapp:hover{box-shadow:0 6px 18px rgba(217,164,65,0.4);}
+
+  /* pour animation */
+  .pour-scene{position:relative; height:280px; display:flex; align-items:flex-end; justify-content:center;}
+  .jug{position:absolute; top:0; right:30%; transform:rotate(18deg); z-index:2;}
+  .stream{
+    position:absolute; top:58px; right:calc(30% + 8px);
+    width:6px; height:150px;
+    background:linear-gradient(var(--cream), var(--ghee-light));
+    border-radius:3px;
+    animation:pour 2.6s ease-in-out infinite;
+    transform-origin:top center;
+  }
+  @keyframes pour{
+    0%,100%{opacity:0.85; transform:scaleY(0.9);}
+    50%{opacity:1; transform:scaleY(1);}
+  }
+  .glass{position:absolute; bottom:10px; right:calc(30% - 22px); z-index:1;}
+  .ripple{
+    position:absolute; bottom:52px; right:calc(30% - 6px);
+    width:14px; height:14px; border:2px solid var(--ghee-light);
+    border-radius:50%; opacity:0;
+    animation:ripple 2.6s ease-out infinite;
+  }
+  @keyframes ripple{
+    0%{opacity:0; transform:scale(0.3);}
+    30%{opacity:0.8;}
+    100%{opacity:0; transform:scale(2.4);}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .stream, .ripple{animation:none;}
+  }
+
+  /* wave divider mimicking a pour */
+  .wave{display:block; margin-top:-2px;}
+
+  /* ---------- section basics ---------- */
+  section{padding:88px 0;}
+  .section-head{max-width:640px; margin-bottom:48px;}
+  .section-head .eyebrow{color:var(--ghee); }
+  .section-head .eyebrow::before{background:var(--ghee);}
+  .section-head h2{font-size:clamp(1.7rem, 3.4vw, 2.4rem);}
+  .section-head p{margin-top:14px; color:#5c4d3c; font-size:1.02rem; max-width:52ch;}
+
+  /* ---------- about / stats ---------- */
+  .about-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:start;}
+  .about-text p{margin-bottom:16px; color:#4a3c2c; font-size:1.02rem;}
+  .stats{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--cream-line); border:1px solid var(--cream-line); border-radius:14px; overflow:hidden;}
+  .stat{background:var(--white); padding:26px 22px;}
+  .stat .num{font-family:'Fraunces', serif; font-size:2.1rem; font-weight:700; color:var(--pasture-dark);}
+  .stat .label{font-size:0.82rem; color:#6b5b46; margin-top:4px; text-transform:uppercase; letter-spacing:0.5px;}
+
+  /* ---------- products ---------- */
+  .products-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)); gap:20px;
+  }
+  .product-card{
+    background:var(--white); border:1px solid var(--cream-line); border-radius:16px;
+    padding:26px 22px; transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .product-card:hover{transform:translateY(-4px); box-shadow:0 14px 30px rgba(59,44,30,0.08);}
+  .product-icon{
+    width:46px; height:46px; border-radius:12px; background:var(--cream);
+    display:flex; align-items:center; justify-content:center; font-size:1.4rem; margin-bottom:16px;
+  }
+  .product-card h3{font-size:1.15rem; margin-bottom:6px;}
+  .product-card p.desc{font-size:0.9rem; color:#6b5b46; margin-bottom:14px;}
+  .product-price{font-family:'IBM Plex Mono', monospace; font-weight:500; color:var(--pasture); font-size:0.95rem;}
+
+  /* ---------- delivery / shop ---------- */
+  .split{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .panel{
+    background:var(--pasture); color:var(--cream);
+    border-radius:18px; padding:36px 32px;
+  }
+  .panel.alt{background:var(--white); color:var(--earth); border:1px solid var(--cream-line);}
+  .panel h3{color:inherit; font-size:1.3rem; margin-bottom:14px;}
+  .panel.alt h3{color:var(--pasture-dark);}
+  .panel ul{list-style:none; margin-top:16px;}
+  .panel li{
+    padding:10px 0; border-top:1px solid rgba(253,248,236,0.15);
+    display:flex; justify-content:space-between; gap:12px; font-size:0.95rem;
+  }
+  .panel.alt li{border-top:1px solid var(--cream-line);}
+  .panel li:first-of-type{border-top:none;}
+  .tag{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem;
+    background:rgba(217,164,65,0.18); color:var(--ghee-light);
+    padding:3px 9px; border-radius:6px; align-self:flex-start;
+  }
+  .panel.alt .tag{background:rgba(51,71,47,0.08); color:var(--pasture);}
+
+  /* ---------- contact ---------- */
+  .contact-band{
+    background:var(--ghee); border-radius:22px; padding:52px 44px;
+    display:flex; align-items:center; justify-content:space-between; gap:32px; flex-wrap:wrap;
+  }
+  .contact-band h2{color:var(--pasture-dark); font-size:clamp(1.5rem,3vw,2.1rem); max-width:16ch;}
+  .contact-band .btn-whatsapp{background:var(--pasture-dark); color:var(--cream);}
+  .contact-details{
+    margin-top:44px; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:24px;
+  }
+  .contact-details div{padding:18px 0; border-top:1px solid var(--cream-line);}
+  .contact-details .label{font-size:0.75rem; text-transform:uppercase; letter-spacing:1px; color:var(--ghee); font-weight:600;}
+  .contact-details .value{margin-top:6px; font-size:1rem; color:var(--earth);}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--cream-line); padding:30px 0; text-align:center;}
+  footer p{font-size:0.85rem; color:#7a6a54;}
+
+  /* reveal */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (max-width:860px){
+    .hero-inner{grid-template-columns:1fr;}
+    .pour-scene{height:160px; margin-top:20px;}
+    .about-grid, .split{grid-template-columns:1fr;}
+    .contact-band{flex-direction:column; align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner wrap" style="padding-left:0; padding-right:0;">
+    <div class="brand">
+      <div class="brand-mark">YB</div>
+      <div>
+        <div class="brand-name">YB Group</div>
+        <div class="brand-sub">Milk &amp; Dairy</div>
+      </div>
+    </div>
+    <a class="btn btn-whatsapp" href="https://wa.me/919226318025" target="_blank" rel="noopener">
+      Order on WhatsApp
+    </a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div>
+      <div class="eyebrow">Farm to doorstep, every morning</div>
+      <h1>Pure raw milk <em>&amp;</em> real dairy, delivered fresh</h1>
+      <p class="lede">YB Group of Milk Business supplies raw milk, curd, paneer, ghee and more — home delivered daily, or pick it up at one of our shops.</p>
+      <div class="hero-actions">
+        <a class="btn btn-whatsapp" href="https://wa.me/919226318025" target="_blank" rel="noopener">Message us on WhatsApp</a>
+        <a class="btn btn-ghost" href="#products">See products</a>
+      </div>
+    </div>
+    <div class="pour-scene" aria-hidden="true">
+      <svg class="jug" width="86" height="100" viewBox="0 0 86 100" fill="none">
+        <path d="M20 10 C20 4 26 0 34 0 L54 0 C60 0 64 5 64 10 L64 14 L74 20 C79 23 79 30 74 33 L64 38 L64 78 C64 90 55 100 42 100 C29 100 20 90 20 78 Z" fill="#F0C876"/>
+        <path d="M20 10 C20 4 26 0 34 0 L54 0 C60 0 64 5 64 10 L64 20 L20 20 Z" fill="#FDF8EC" opacity="0.5"/>
+      </svg>
+      <div class="stream"></div>
+      <div class="ripple"></div>
+      <svg class="glass" width="70" height="90" viewBox="0 0 70 90" fill="none">
+        <path d="M6 8 L64 8 L56 84 C55 88 51 90 47 90 L23 90 C19 90 15 88 14 84 Z" stroke="#FDF8EC" stroke-width="3" fill="none"/>
+        <path d="M11 46 L59 46 L55 84 C54.5 87 51.5 88 47 88 L23 88 C19.5 88 16.5 87 15 84 Z" fill="#FDF8EC" opacity="0.9"/>
+      </svg>
+    </div>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 60" width="100%" height="60" preserveAspectRatio="none">
+    <path d="M0,20 C240,60 480,0 720,20 C960,40 1200,10 1440,30 L1440,60 L0,60 Z" fill="#FDF8EC"/>
+  </svg>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid reveal">
+    <div class="about-text">
+      <div class="section-head" style="margin-bottom:24px;">
+        <div class="eyebrow">Our story</div>
+        <h2>Milk you can trust, from people you know</h2>
+      </div>
+      <p>YB Group of Milk Business started with a simple promise: milk the way it's meant to taste, without shortcuts. We source raw milk daily and prepare our dairy products the traditional way, so every glass, every bowl of curd, and every block of paneer is genuinely fresh.</p>
+      <p>Whether you're a household ordering daily home delivery or dropping by one of our shops, you get the same quality — checked every single day before it reaches you.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="num">100%</div><div class="label">Raw &amp; unadulterated</div></div>
+      <div class="stat"><div class="num">Daily</div><div class="label">Fresh delivery</div></div>
+      <div class="stat"><div class="num">2+</div><div class="label">Shop locations</div></div>
+      <div class="stat"><div class="num">7 AM</div><div class="label">Morning delivery slot</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="products" style="background:var(--white); border-top:1px solid var(--cream-line); border-bottom:1px solid var(--cream-line);">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div class="eyebrow">What we sell</div>
+      <h2>Our dairy products</h2>
+      <p>Edit prices and items freely — this is just a starting list.</p>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-icon">🥛</div>
+        <h3>Raw Milk</h3>
+        <p class="desc">Farm-fresh, unprocessed, delivered daily.</p>
+        <div class="product-price">₹ 63 / litre</div>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">🧈</div>
+        <h3>Ghee</h3>
+        <p class="desc">Traditionally prepared, rich aroma.</p>
+        <div class="product-price">₹ 770 / kg</div>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">🍶</div>
+        <h3>Curd (Dahi)</h3>
+        <p class="desc">Set fresh every day, thick and creamy.</p>
+        <div class="product-price">₹ 100 / kg</div>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">🧀</div>
+        <h3>Paneer</h3>
+        <p class="desc">Soft, made fresh in small batches.</p>
+        <div class="product-price">₹ 500 / kg</div>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">🧈</div>
+        <h3>Butter</h3>
+        <p class="desc">Churned from farm cream.</p>
+        <div class="product-price">₹ 200 / kg</div>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">🍮</div>
+        <h3>Shrikhand</h3>
+        <p class="desc">Sweet, strained curd dessert.</p>
+        <div class="product-price">₹ 300 / kg</div>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">🥣</div>
+        <h3>Basundi</h3>
+        <p class="desc">Slow-simmered, thickened sweet milk.</p>
+        <div class="product-price">₹ 250 / kg</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="delivery">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div class="eyebrow">How to get it</div>
+      <h2>Home delivery or visit our shop</h2>
+    </div>
+    <div class="split">
+      <div class="panel">
+        <span class="tag">DOOR TO DOOR</span>
+        <h3 style="margin-top:14px;">Home Delivery</h3>
+        <ul>
+          <li><span>Mon – Sat</span><span>6:00 – 9:00 AM</span></li>
+          <li><span>Sunday</span><span>Sharp 7:30 AM</span></li>
+          <li><span>Areas covered</span><span>Sangola, Jath, Pandharpur, Mangalwedha talukas &amp; Solapur city</span></li>
+          <li><span>Minimum order</span><span>1 L or 500 g</span></li>
+          <li><span>Booking</span><span>WhatsApp</span></li>
+        </ul>
+      </div>
+      <div class="panel alt">
+        <span class="tag">WALK IN</span>
+        <h3 style="margin-top:14px;">Shop Locations</h3>
+        <ul>
+          <li><span>Sangola</span><span>Headquarter</span></li>
+          <li><span>Jule Solapur</span><span>Branch</span></li>
+          <li><span>Pandharpur</span><span>Branch</span></li>
+          <li><span>Mangalwedha</span><span>Branch</span></li>
+          <li><span>Jath</span><span>Branch</span></li>
+          <li><span>Timings</span><span>[e.g. 6 AM – 9 PM]</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap reveal">
+    <div class="contact-band">
+      <h2>Ready to order fresh milk today?</h2>
+      <a class="btn btn-whatsapp" href="https://wa.me/919226318025" target="_blank" rel="noopener">Chat on WhatsApp</a>
+    </div>
+    <div class="contact-details">
+      <div>
+        <div class="label">WhatsApp / Phone</div>
+        <div class="value">+91 9226318025</div>
+      </div>
+      <div>
+        <div class="label">Email</div>
+        <div class="value">bileyash98@gmail.com</div>
+      </div>
+      <div>
+        <div class="label">Headquarter</div>
+        <div class="value">Sangola, Maharashtra</div>
+      </div>
+      <div>
+        <div class="label">Delivery hours</div>
+        <div class="value">Mon–Sat 6–9 AM · Sun 7:30 AM sharp</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="locations" style="background:var(--white); border-top:1px solid var(--cream-line);">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div class="eyebrow">Find us</div>
+      <h2>Our locations</h2>
+      <p>Headquartered in Sangola, with branches across the region.</p>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="tag" style="margin-bottom:12px; display:inline-block;">HEADQUARTER</div>
+        <h3>Sangola</h3>
+        <div style="border-radius:10px; overflow:hidden; margin-top:12px; border:1px solid var(--cream-line);">
+          <iframe src="https://www.google.com/maps?q=Sangola,+Maharashtra&output=embed" width="100%" height="180" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map of Sangola"></iframe>
+        </div>
+        <a href="https://www.google.com/maps/search/?api=1&query=Sangola,+Maharashtra" target="_blank" rel="noopener" style="display:inline-block; margin-top:10px; font-size:0.85rem; font-weight:600; color:var(--pasture);">Open in Google Maps &rarr;</a>
+      </div>
+      <div class="product-card">
+        <h3>Jule Solapur</h3>
+        <div style="border-radius:10px; overflow:hidden; margin-top:12px; border:1px solid var(--cream-line);">
+          <iframe src="https://www.google.com/maps?q=Jule+Solapur,+Maharashtra&output=embed" width="100%" height="180" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map of Jule Solapur"></iframe>
+        </div>
+        <a href="https://www.google.com/maps/search/?api=1&query=Jule+Solapur,+Maharashtra" target="_blank" rel="noopener" style="display:inline-block; margin-top:10px; font-size:0.85rem; font-weight:600; color:var(--pasture);">Open in Google Maps &rarr;</a>
+      </div>
+      <div class="product-card">
+        <h3>Pandharpur</h3>
+        <div style="border-radius:10px; overflow:hidden; margin-top:12px; border:1px solid var(--cream-line);">
+          <iframe src="https://www.google.com/maps?q=Pandharpur,+Maharashtra&output=embed" width="100%" height="180" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map of Pandharpur"></iframe>
+        </div>
+        <a href="https://www.google.com/maps/search/?api=1&query=Pandharpur,+Maharashtra" target="_blank" rel="noopener" style="display:inline-block; margin-top:10px; font-size:0.85rem; font-weight:600; color:var(--pasture);">Open in Google Maps &rarr;</a>
+      </div>
+      <div class="product-card">
+        <h3>Mangalwedha</h3>
+        <div style="border-radius:10px; overflow:hidden; margin-top:12px; border:1px solid var(--cream-line);">
+          <iframe src="https://www.google.com/maps?q=Mangalwedha,+Maharashtra&output=embed" width="100%" height="180" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map of Mangalwedha"></iframe>
+        </div>
+        <a href="https://www.google.com/maps/search/?api=1&query=Mangalwedha,+Maharashtra" target="_blank" rel="noopener" style="display:inline-block; margin-top:10px; font-size:0.85rem; font-weight:600; color:var(--pasture);">Open in Google Maps &rarr;</a>
+      </div>
+      <div class="product-card">
+        <h3>Jath</h3>
+        <div style="border-radius:10px; overflow:hidden; margin-top:12px; border:1px solid var(--cream-line);">
+          <iframe src="https://www.google.com/maps?q=Jath,+Maharashtra&output=embed" width="100%" height="180" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map of Jath"></iframe>
+        </div>
+        <a href="https://www.google.com/maps/search/?api=1&query=Jath,+Maharashtra" target="_blank" rel="noopener" style="display:inline-block; margin-top:10px; font-size:0.85rem; font-weight:600; color:var(--pasture);">Open in Google Maps &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© <span id="year"></span> YB Group of Milk Business. All rights reserved.</p>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
